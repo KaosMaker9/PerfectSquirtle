@@ -991,25 +991,11 @@
 	.2byte \species
 	.byte \level
 	.2byte \item
-	.4byte 0  @ Placeholder for unused parameters
-	
-	ldr r0, =\species
-	ldr r1, =SPECIES_SQUIRTLE
-	cmp r0, r1
-	bne not_squirtle  @ If it's not Squirtle, skip IV setting
-	
-	@ Set perfect IVs (0x7FFF) if it's a Squirtle
-	ldr r2, =0x7FFF
-	ldr r0, =POKEMON_DATA_BASE  @ Example: Base address for Pokémon
-	add r0, r0, #OFFSET_TO_IVS  @ Offset for IV data
-	str r2, [r0]  @ Store IVs in Pokémon structure
-	
-	not_squirtle:
+	.4byte 0
 	.4byte 0
 	.byte 0
 	.endm
-
-
+	
 	@ Gives the player an Egg of the specified species.
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE depending on the outcome. 
 	.macro giveegg species:req
