@@ -1831,12 +1831,12 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &fixedIV);
     }
     else if(species == SPECIES_SQUIRTLE){
-        int HP = rand() % (upper_bound - lower_bound + 1) + lower_bound;
-        int ATK = rand() % (upper_bound - lower_bound + 1) + lower_bound;
-        int DEF = rand() % (upper_bound - lower_bound + 1) + lower_bound;
-        int SPEED = rand() % (upper_bound - lower_bound + 1) + lower_bound;
-        int SPATK = rand() % (upper_bound - lower_bound + 1) + lower_bound;
-        int SPDEF = rand() % (upper_bound - lower_bound + 1) + lower_bound;
+        int HP = rand() % (31 - 1 + 1) + 1; // rand() % (UPPER_BOUND - LOWER_BOUND + 1) + LOWER_BOUND
+        int ATK = rand() % (31 - 18 + 1) + 18;
+        int DEF = rand() % (31 - 1 + 1) + 1;
+        int SPEED = rand() % (31 - 21 + 1) + 21;
+        int SPATK = rand() % (31 - 25 + 1) + 25;
+        int SPDEF = rand() % (31 - 1 + 1) + 1;
 
         SetBoxMonData(boxMon, MON_DATA_HP_IV, &HP);
         SetBoxMonData(boxMon, MON_DATA_ATK_IV, &ATK);

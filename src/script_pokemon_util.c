@@ -52,7 +52,18 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     u8 heldItem[2];
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
     if(species == SPECIES_SQUIRTLE){
-        CreateMon(mon, species, level, 31, 0, 0, OT_ID_PLAYER_ID, 0);
+        int nat = rand() % 3;
+        switch(nat){
+        case(0):
+            CreateMonWithNature(mon, species, level, 32, NATURE_MILD);
+            break;
+        case(1):
+            CreateMonWithNature(mon, species, level, 32, NATURE_MODEST);
+            break;
+        case(2):
+            CreateMonWithNature(mon, species, level, 32, NATURE_RASH);
+            break;
+        }
     }
     else{
         CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
