@@ -36,7 +36,6 @@
 #include "constants/hold_effects.h"
 #include "constants/battle_move_effects.h"
 #include "constants/union_room.h"
-#include "stdlib.h"
 
 #define SPECIES_TO_HOENN(name)      [SPECIES_##name - 1] = HOENN_DEX_##name
 #define SPECIES_TO_NATIONAL(name)   [SPECIES_##name - 1] = NATIONAL_DEX_##name
@@ -1832,12 +1831,12 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &fixedIV);
     }
     else if(species == SPECIES_SQUIRTLE){
-        int HP = rand() % (31 - 1 + 1) + 1; // rand() % (UPPER_BOUND - LOWER_BOUND + 1) + LOWER_BOUND
-        int ATK = rand() % (31 - 18 + 1) + 18;
-        int DEF = rand() % (31 - 1 + 1) + 1;
-        int SPEED = rand() % (31 - 21 + 1) + 21;
-        int SPATK = rand() % (31 - 25 + 1) + 25;
-        int SPDEF = rand() % (31 - 1 + 1) + 1;
+        int HP = Random32() % (31 - 1 + 1) + 1; // rand() % (UPPER_BOUND - LOWER_BOUND + 1) + LOWER_BOUND
+        int ATK = Random32() % (31 - 18 + 1) + 18;
+        int DEF = Random32() % (31 - 1 + 1) + 1;
+        int SPEED = Random32() % (31 - 21 + 1) + 21;
+        int SPATK = Random32() % (31 - 25 + 1) + 25;
+        int SPDEF = Random32() % (31 - 1 + 1) + 1;
 
         SetBoxMonData(boxMon, MON_DATA_HP_IV, &HP);
         SetBoxMonData(boxMon, MON_DATA_ATK_IV, &ATK);
