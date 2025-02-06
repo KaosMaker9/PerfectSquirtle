@@ -15,6 +15,14 @@
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleTowerParty(void);
 
+static int absolute(int num)
+{
+    if(num < 0){
+        num *= -1;
+    }
+    return num;
+}
+
 void HealPlayerParty(void)
 {
     u8 i, j;
@@ -53,7 +61,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     u8 heldItem[2];
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
     if(species == SPECIES_SQUIRTLE){
-        int nat = Random32() % 3;
+        u8 nat = absolute(Random32() % 3);
         switch(nat){
         case(0):
             CreateMonWithNature(mon, species, level, 32, NATURE_MILD);

@@ -41,6 +41,14 @@
 #define SPECIES_TO_NATIONAL(name)   [SPECIES_##name - 1] = NATIONAL_DEX_##name
 #define HOENN_TO_NATIONAL(name)     [HOENN_DEX_##name - 1] = NATIONAL_DEX_##name
 
+static int absolute(int num)
+{
+    if(num < 0){
+        num *= -1;
+    }
+    return num;
+}
+
 struct MonSpritesGfxManager
 {
     u8 numSprites:4;
@@ -1831,12 +1839,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &fixedIV);
     }
     else if(species == SPECIES_SQUIRTLE){
-        int HP = Random32() % (31 - 1 + 1) + 1; // rand() % (UPPER_BOUND - LOWER_BOUND + 1) + LOWER_BOUND
-        int ATK = Random32() % (31 - 18 + 1) + 18;
-        int DEF = Random32() % (31 - 1 + 1) + 1;
-        int SPEED = Random32() % (31 - 21 + 1) + 21;
-        int SPATK = Random32() % (31 - 25 + 1) + 25;
-        int SPDEF = Random32() % (31 - 1 + 1) + 1;
+        u8 HP = absolute(Random32() % (31 - 1 + 1)) + 1; // rand() % (UPPER_BOUND - LOWER_BOUND + 1) + LOWER_BOUND
+        u8 ATK = absolute(Random32() % (31 - 6 + 1)) + 6;
+        u8 DEF = absolute(Random32() % (31 - 1 + 1)) + 1;
+        u8 SPEED = absolute(Random32() % (31 - 16 + 1)) + 16;
+        u8 SPATK = absolute(Random32() % (31 - 28 + 1)) + 28;
+        u8 SPDEF = absolute(Random32() % (31 - 1 + 1)) + 1;
+
 
         SetBoxMonData(boxMon, MON_DATA_HP_IV, &HP);
         SetBoxMonData(boxMon, MON_DATA_ATK_IV, &ATK);
